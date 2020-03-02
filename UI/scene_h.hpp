@@ -7,6 +7,7 @@
 #include "forward_decls.hpp"
 #include <functional>
 #include <iostream>
+#include <string>
 
 //using namespace std;
 
@@ -14,20 +15,20 @@ namespace UI {
     class Scene : public sf::Drawable {
     public:
         std::function<void(Scene* scene)> onSceneSwitchTo, onSceneSwitchAway, onTick;
-        std::vector<Focus*> focusable;
-        std::vector<Hold*> holdable;
-        std::vector<Hover*> hoverable;
-        std::vector<sf::Drawable*> drawable;
+        std::unordered_map<std::string, Focus*> focusable;
+        std::unordered_map<std::string, Hold*> holdable;
+        std::unordered_map<std::string, Hover*> hoverable;
+        std::unordered_map<std::string, sf::Drawable*> drawable;
     private:
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-            for (sf::Drawable* val : drawable) target.draw(*val, states);
+            for (auto val : drawable) target.draw(*val.second, states);
         }
     public:
         Scene(
-            std::vector<Focus*> focusVect = {},
-            std::vector<Hold*> holdVect = {},
-            std::vector<Hover*> hoverVect = {},
-            std::vector<sf::Drawable*> drawVect = {}
+            std::unordered_map<std::string, Focus*> focusVect = {},
+            std::unordered_map<std::string, Hold*> holdVect = {},
+            std::unordered_map<std::string, Hover*> hoverVect = {},
+            std::unordered_map<std::string, sf::Drawable*> drawVect = {}
         );
 
         void setSwitchToAction(std::function<void(Scene* scene)> fnc);
@@ -38,8 +39,8 @@ namespace UI {
         void switchAway();
         void tick();
 
-        void addElem(Concrete* elem);
-        void addElem(sf::Drawable* elem);
+        Concrete* addElem(const std::string& name, Concrete* elem);
+        sf::Drawable* addElem(const std::string& name, sf::Drawable* elem);
     };
 };
 

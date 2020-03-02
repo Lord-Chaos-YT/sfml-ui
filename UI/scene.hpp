@@ -14,10 +14,10 @@
 
 namespace UI {
     Scene::Scene(
-        std::vector<Focus*> focusVect,
-        std::vector<Hold*> holdVect,
-        std::vector<Hover*> hoverVect,
-        std::vector<sf::Drawable*> drawVect
+        std::unordered_map<std::string, Focus*> focusVect,
+        std::unordered_map<std::string, Hold*> holdVect,
+        std::unordered_map<std::string, Hover*> hoverVect,
+        std::unordered_map<std::string, sf::Drawable*> drawVect
     ) {
         focusable = focusVect;
         holdable = holdVect;
@@ -33,8 +33,15 @@ namespace UI {
     void Scene::switchAway() {if ((bool)onSceneSwitchAway) onSceneSwitchAway(this);}
     void Scene::tick() {if ((bool)onTick) onTick(this);}
 
-    void Scene::addElem(Concrete* elem) {elem->addScene(this);}
-    void Scene::addElem(sf::Drawable* elem) {this->drawable.push_back(elem);}
+    Concrete* Scene::addElem(const std::string& name, Concrete* elem) {
+        elem->addScene(name, this);
+        return elem;
+    }
+
+    sf::Drawable* Scene::addElem(const std::string& name, sf::Drawable* elem) {
+        this->drawable.insert({name, elem});
+        return elem;
+    }
 };
 
 #endif

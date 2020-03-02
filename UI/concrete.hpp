@@ -11,11 +11,11 @@
 //using namespace std;
 
 namespace UI {
-    void Concrete::addScene(Scene* scene) {(scene->drawable).push_back(this);}
+    void Concrete::addScene(const std::string& name, Scene* scene) {(scene->drawable).insert({name, this});}
 
-    void Hover::addScene(Scene* scene) {
-        (scene->drawable).push_back(this);
-        (scene->hoverable).push_back(this);
+    void Hover::addScene(const std::string& name, Scene* scene) {
+        (scene->drawable).insert({name, this});
+        (scene->hoverable).insert({name, this});
     }
 
     bool Hover::isMouseOver(const sf::Vector2f& mousePos) {
@@ -23,16 +23,16 @@ namespace UI {
         return (sf::FloatRect{pos.x, pos.y, size.x, size.y}).contains(mousePos);
     }
 
-    void Focus::addScene(Scene* scene) {
-        (scene->drawable).push_back(this);
-        (scene->hoverable).push_back(this);
-        (scene->focusable).push_back(this);
+    void Focus::addScene(const std::string& name, Scene* scene) {
+        (scene->drawable).insert({name, this});
+        (scene->hoverable).insert({name, this});
+        (scene->focusable).insert({name, this});
     }
 
-    void Hold::addScene(Scene* scene) {
-        (scene->drawable).push_back(this);
-        (scene->hoverable).push_back(this);
-        (scene->holdable).push_back(this);
+    void Hold::addScene(const std::string& name, Scene* scene) {
+        (scene->drawable).insert({name, this});
+        (scene->hoverable).insert({name, this});
+        (scene->holdable).insert({name, this});
     }
 };
 

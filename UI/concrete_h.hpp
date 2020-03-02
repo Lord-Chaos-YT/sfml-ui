@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "forward_decls.hpp"
 #include <functional>
+#include <string>
 
 //using namespace std;
 
@@ -14,7 +15,7 @@ namespace UI {
     public:
         virtual sf::Vector2f getPosition() = 0;
         virtual sf::Vector2f getSize() = 0;
-        virtual void addScene(Scene* scene);
+        virtual void addScene(const std::string& name, Scene* scene);
     };
 
     class Hover : public Concrete {
@@ -24,7 +25,7 @@ namespace UI {
         virtual void unHover() = 0;
         virtual void click() = 0;
         virtual void unClick() = 0;
-        virtual void addScene(Scene* scene);
+        virtual void addScene(const std::string& name, Scene* scene);
     };
 
     class Focus : public Hover {
@@ -33,7 +34,7 @@ namespace UI {
         virtual void focusTick(const sf::Time& time) = 0;
         virtual void endFocus() = 0;
         virtual void registerKeystroke(const sf::Keyboard::Key& key, bool shiftPressed) {throw "Invalid call";}
-        virtual void addScene(Scene* scene);
+        virtual void addScene(const std::string& name, Scene* scene);
     };
 
     class Hold : public Hover {
@@ -41,7 +42,7 @@ namespace UI {
         virtual void startHold(const sf::Vector2f& mousePos) = 0;
         virtual void updateHold(const sf::Vector2f& mousePos) = 0;
         virtual void endHold() = 0;
-        virtual void addScene(Scene* scene);
+        virtual void addScene(const std::string& name, Scene* scene);
     };
 };
 
