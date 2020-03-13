@@ -31,7 +31,7 @@
 
 using namespace std;
 
-int main(int argCount, char* args[],
+int init(int argCount, char* args[],
 function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus* focus, UI::Hold* hold, UI::Hover* hover, UI::Scene* currentScene)> initFnc
 ) {
     // Only show console if the argument "console" is used
