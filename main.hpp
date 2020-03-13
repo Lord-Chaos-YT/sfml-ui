@@ -5,17 +5,22 @@
 
 #define SFML_STATIC
 
+
+#ifndef MAIN_HPP
+#define MAIN_HPP
+
+
 #include <SFML/Graphics.hpp>
-#include "sfml-ui/UI/scrollwindow.hpp"
-#include "sfml-ui/UI/constants.hpp"
-#include "sfml-ui/UI/concrete.hpp"
-#include "sfml-ui/UI/elements.hpp"
-#include "sfml-ui/UI/methods.hpp"
-#include "sfml-ui/UI/textbox.hpp"
-#include "sfml-ui/UI/button.hpp"
-#include "sfml-ui/UI/scroll.hpp"
-#include "sfml-ui/UI/scene.hpp"
-#include "sfml-ui/UI/pop.hpp"
+#include "UI/scrollwindow.hpp"
+#include "UI/constants.hpp"
+#include "UI/concrete.hpp"
+#include "UI/elements.hpp"
+#include "UI/methods.hpp"
+#include "UI/textbox.hpp"
+#include "UI/button.hpp"
+#include "UI/scroll.hpp"
+#include "UI/scene.hpp"
+#include "UI/pop.hpp"
 #include <functional>
 #include <windows.h>
 #include <iostream>
@@ -26,7 +31,9 @@
 
 using namespace std;
 
-int main(int argCount, char* args[]) {
+int main(int argCount, char* args[],
+function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus* focus, UI::Hold* hold, UI::Hover* hover, UI::Scene* currentScene)> initFnc
+) {
     // Only show console if the argument "console" is used
     if (argCount > 1 && (string)args[1] == "console");
     else ShowWindow(FindWindowA("ConsoleWindowClass", NULL), false);
@@ -47,14 +54,8 @@ int main(int argCount, char* args[]) {
     UI::Hold* hold = nullptr;
     UI::Hover* hover = nullptr;
     UI::Scene* currentScene = nullptr;
-    game::InputManager<game::PlayerData>* player = nullptr;
 
-    // Backgrounds
-    sf::RectangleShape whiteSpace;
-    whiteSpace.setSize({UI::winW, UI::winH});
-    UI::PopBackground background({0, 0}, {UI::winW, UI::winH});
-    background.setPadding(2.f);
-    background.invert(true);
+    initFnc(window, font, normalCursor, textBoxCursor, clock, focus, hold, hover, currentScene);
 
     
     while (window.isOpen()) {
@@ -139,3 +140,5 @@ int main(int argCount, char* args[]) {
     FreeConsole();
     return 0;
 }
+
+#endif
