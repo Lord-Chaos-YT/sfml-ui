@@ -130,7 +130,7 @@ namespace UI {
         float outlineThickness
     ) {
         //padding = pad;
-        TextBox::TextBox(characterSize, pos, pad, size, bgColor, txtColor, popColors, outlineThickness);
+        TextBox(characterSize, pos, pad, size, bgColor, txtColor, popColors, outlineThickness);
         text.setFont(font);
         /*text.setFillColor(txtColor);
         text.setCharacterSize(characterSize);
