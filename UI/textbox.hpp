@@ -13,7 +13,7 @@
 #include <string>
 
 namespace UI {
-    class TextBox_0 : public Focus {
+    class TextBox : public Focus {
     private:
         sf::RectangleShape background;
         sf::RenderTexture texture;
@@ -25,8 +25,8 @@ namespace UI {
         bool align = false;
         sf::Vector2f padding;
         sf::Time focusTime;
-        std::function<void(TextBox_0* textbox)> onHover, onUnHover, onClick, onUnClick;
-        std::function<void(TextBox_0* textbox, std::string buffer)> onEnter;
+        std::function<void(TextBox* textbox)> onHover, onUnHover, onClick, onUnClick;
+        std::function<void(TextBox* textbox, std::string buffer)> onEnter;
 
         void recomputeText();
         void recomputePos();
@@ -41,7 +41,17 @@ namespace UI {
             target.draw(cursor, states);
         }
     public:
-        TextBox_0(
+        TextBox(
+            unsigned int characterSize = 16,
+            const sf::Vector2f& pos = {0.f, 0.f},
+            const sf::Vector2f& pad = {2.f, 2.f},
+            const sf::Vector2f& size = {64.f, -1.f},
+            const sf::Color& bgColor = sWhite,
+            const sf::Color& txtColor = sBlack,
+            const std::pair<sf::Color, sf::Color> popColors = {dGrey, lGrey},
+            float outlineThickness = 1.f
+        );
+        TextBox(
             const sf::Font& font,
             unsigned int characterSize = 16,
             const sf::Vector2f& pos = {0.f, 0.f},
@@ -57,11 +67,11 @@ namespace UI {
         void setSize(const sf::Vector2f& size);
         void setFont(const sf::Font& font);
         void setCharacterSize(unsigned int size, bool autoResize = true);
-        void setHoverAction(std::function<void(TextBox_0* textbox)> fnc);
-        void setUnHoverAction(std::function<void(TextBox_0* textbox)> fnc);
-        void setClickAction(std::function<void(TextBox_0* textbox)> fnc);
-        void setUnClickAction(std::function<void(TextBox_0* textbox)> fnc);
-        void setEnterAction(std::function<void(TextBox_0* textbox, std::string buffer)> fnc);
+        void setHoverAction(std::function<void(TextBox* textbox)> fnc);
+        void setUnHoverAction(std::function<void(TextBox* textbox)> fnc);
+        void setClickAction(std::function<void(TextBox* textbox)> fnc);
+        void setUnClickAction(std::function<void(TextBox* textbox)> fnc);
+        void setEnterAction(std::function<void(TextBox* textbox, std::string buffer)> fnc);
         void setBuffer(std::string str = "");
 
         sf::Vector2f getPosition();
@@ -84,8 +94,7 @@ namespace UI {
         }*/
     };
 
-    TextBox_0::TextBox_0(
-        const sf::Font& font,
+    TextBox::TextBox(
         unsigned int characterSize,
         const sf::Vector2f& pos,
         const sf::Vector2f& pad,
@@ -96,7 +105,6 @@ namespace UI {
         float outlineThickness
     ) {
         padding = pad;
-        text.setFont(font);
         text.setFillColor(txtColor);
         text.setCharacterSize(characterSize);
         sprite.setTexture(texture.getTexture());
@@ -110,8 +118,35 @@ namespace UI {
         background.setOutlineThickness(outlineThickness);
         this->recomputeSizes();
     }
+    TextBox::TextBox(
+        const sf::Font& font,
+        unsigned int characterSize,
+        const sf::Vector2f& pos,
+        const sf::Vector2f& pad,
+        const sf::Vector2f& size,
+        const sf::Color& bgColor,
+        const sf::Color& txtColor,
+        const std::pair<sf::Color, sf::Color> popColors,
+        float outlineThickness
+    ) {
+        //padding = pad;
+        TextBox::TextBox(characterSize, pos, pad, size, bgColor, txtColor, popColors, outlineThickness);
+        text.setFont(font);
+        /*text.setFillColor(txtColor);
+        text.setCharacterSize(characterSize);
+        sprite.setTexture(texture.getTexture());
+        pop.setDrawOrder(2);
+        pop.setColors(popColors);
+        background.setPosition(pos);
+        if (size.y == -1.f) background.setSize({size.x, (float)characterSize + (padding.y * 2.f)});
+        else background.setSize(size);
+        background.setFillColor(bgColor);
+        background.setOutlineColor(sBlack);
+        background.setOutlineThickness(outlineThickness);
+        this->recomputeSizes();*/
+    }
 
-    void TextBox_0::recomputeText() {
+    void TextBox::recomputeText() {
         sf::Vector2f
             pos = background.getPosition(),
             size = background.getSize(),
@@ -177,81 +212,81 @@ namespace UI {
         texture.display();
     }
 
-    void TextBox_0::recomputePos() {
+    void TextBox::recomputePos() {
         sf::Vector2f pos = background.getPosition();
         sprite.setPosition({pos.x + padding.x, pos.y + padding.y});
         pop.setPosition(pos);
         this->recomputeText();
     }
 
-    void TextBox_0::recomputeSizes() {
+    void TextBox::recomputeSizes() {
         sf::Vector2f size = background.getSize();
         cursor.setCharacterSize(text.getCharacterSize());
         pop.setSize(size);
         this->recomputePos();
     }
 
-    float TextBox_0::getStrWidth(std::string str, sf::Text& test) {
+    float TextBox::getStrWidth(std::string str, sf::Text& test) {
         test.setString(str);
         return test.getLocalBounds().width;
     }
 
-    void TextBox_0::setPosition(const sf::Vector2f& pos) {
+    void TextBox::setPosition(const sf::Vector2f& pos) {
         background.setPosition(pos);
         this->recomputePos();
     }
 
-    void TextBox_0::setPosition(float x, float y) {
+    void TextBox::setPosition(float x, float y) {
         background.setPosition(x, y);
         this->recomputePos();
     }
 
-    void TextBox_0::setSize(const sf::Vector2f& size) {
+    void TextBox::setSize(const sf::Vector2f& size) {
         if (size.y == -1.f) background.setSize({size.x, (float)text.getCharacterSize() + (padding.y * 2.f)});
         else background.setSize(size);
         this->recomputeSizes();
     }
 
-    void TextBox_0::setCharacterSize(unsigned int size, bool autoResize) {
+    void TextBox::setCharacterSize(unsigned int size, bool autoResize) {
         text.setCharacterSize(size);
         if (autoResize) background.setSize({background.getSize().x, (float)size + (padding.y * 2.f)});
         this->recomputeSizes();
     }
 
-    void TextBox_0::setFont(const sf::Font& font) {
+    void TextBox::setFont(const sf::Font& font) {
         text.setFont(font);
         this->recomputeSizes();
     }
 
-    void TextBox_0::setHoverAction(std::function<void(TextBox_0* textbox)> fnc) {onHover = fnc;}
-    void TextBox_0::setUnHoverAction(std::function<void(TextBox_0* textbox)> fnc) {onUnHover = fnc;}
-    void TextBox_0::setClickAction(std::function<void(TextBox_0* textbox)> fnc) {onClick = fnc;}
-    void TextBox_0::setUnClickAction(std::function<void(TextBox_0* textbox)> fnc) {onUnClick = fnc;}
-    void TextBox_0::setEnterAction(std::function<void(TextBox_0* textbox, std::string buffer)> fnc) {onEnter = fnc;}
+    void TextBox::setHoverAction(std::function<void(TextBox* textbox)> fnc) {onHover = fnc;}
+    void TextBox::setUnHoverAction(std::function<void(TextBox* textbox)> fnc) {onUnHover = fnc;}
+    void TextBox::setClickAction(std::function<void(TextBox* textbox)> fnc) {onClick = fnc;}
+    void TextBox::setUnClickAction(std::function<void(TextBox* textbox)> fnc) {onUnClick = fnc;}
+    void TextBox::setEnterAction(std::function<void(TextBox* textbox, std::string buffer)> fnc) {onEnter = fnc;}
 
-    void TextBox_0::setBuffer(std::string str) {
+    void TextBox::setBuffer(std::string str) {
         text.setString(str);
         curPos = 0;
         this->recomputeText();
     }
 
-    sf::Vector2f TextBox_0::getPosition() {return background.getPosition();}
-    sf::Vector2f TextBox_0::getSize() {return background.getSize();}
-    std::string TextBox_0::getBuffer() {return text.getString();}
+    sf::Vector2f TextBox::getPosition() {return background.getPosition();}
+    sf::Vector2f TextBox::getSize() {return background.getSize();}
+    std::string TextBox::getBuffer() {return text.getString();}
 
-    void TextBox_0::startFocus(const sf::Time& time) {
+    void TextBox::startFocus(const sf::Time& time) {
         cursor.display();
         focusTime = time;
     }
 
-    void TextBox_0::focusTick(const sf::Time& time) {
+    void TextBox::focusTick(const sf::Time& time) {
         if (time.asMilliseconds() % 1000 < 500) cursor.display();
         else cursor.hide();
     }
 
-    void TextBox_0::endFocus() {cursor.hide();}
+    void TextBox::endFocus() {cursor.hide();}
 
-    void TextBox_0::registerKeystroke(const sf::Keyboard::Key& key, bool shiftPressed) {
+    void TextBox::registerKeystroke(const sf::Keyboard::Key& key, bool shiftPressed) {
         if (key == sf::Keyboard::Enter && (bool)onEnter) onEnter(this, text.getString());
         else if (key == sf::Keyboard::BackSpace && curPos > 0) {
             std::string buffer = text.getString();
@@ -271,10 +306,10 @@ namespace UI {
         this->recomputeText();
     }
 
-    void TextBox_0::hover() {if ((bool)onHover) onHover(this);}
-    void TextBox_0::unHover() {if ((bool)onUnHover) onUnHover(this);}
-    void TextBox_0::click() {if ((bool)onClick) onClick(this);}
-    void TextBox_0::unClick() {if ((bool)onUnClick) onUnClick(this);}
+    void TextBox::hover() {if ((bool)onHover) onHover(this);}
+    void TextBox::unHover() {if ((bool)onUnHover) onUnHover(this);}
+    void TextBox::click() {if ((bool)onClick) onClick(this);}
+    void TextBox::unClick() {if ((bool)onUnClick) onUnClick(this);}
 };
 
 #endif

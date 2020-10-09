@@ -18,7 +18,7 @@ namespace UI {
     private:
         float padding;
         sf::Vector2f size;
-        function<void(EntryField* entryfield)> onHover, onUnHover, onClick, onUnClick;
+        std::function<void(EntryField* entryfield)> onHover, onUnHover, onClick, onUnClick;
 
         void recomputePos();
 
@@ -31,7 +31,7 @@ namespace UI {
     public:
         Background background;
         sf::Text title;
-        TextBox_0 textbox;
+        TextBox textbox;
         Button<> button;
 
         EntryField(

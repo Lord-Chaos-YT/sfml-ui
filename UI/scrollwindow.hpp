@@ -12,7 +12,7 @@
 //using namespace std;
 
 namespace UI {
-    template<class DataType = Element> class ScrollWindow_0 : public Hold {
+    template<class DataType = Element> class ScrollWindow : public Hold {
     private:
         Scroll scrollbar;
         sf::RectangleShape background;
@@ -31,7 +31,7 @@ namespace UI {
             target.draw(scrollbar, states);
         }
     public:
-        ScrollWindow_0(
+        ScrollWindow(
             std::vector<DataType>* initData = nullptr,
             const sf::Vector2f& pos = {0.f, 0.f},
             const sf::Vector2f& size = {128.f, 64.f},
@@ -65,7 +65,7 @@ namespace UI {
         void recomputeInternalData();
     };
 
-    template<class DataType> ScrollWindow_0<DataType>::ScrollWindow_0(
+    template<class DataType> ScrollWindow<DataType>::ScrollWindow(
         std::vector<DataType>* initData,
         const sf::Vector2f& pos,
         const sf::Vector2f& size,
@@ -93,7 +93,7 @@ namespace UI {
         });
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::recomputePos() {
+    template<class DataType> void ScrollWindow<DataType>::recomputePos() {
         sf::Vector2f pos = background.getPosition(), size = background.getSize(), scrollbarSize = scrollbar.getSize();
         if (data != nullptr) {
             float scrollPosition = scrollbar.getScrollPosition() / data->size(),
@@ -106,7 +106,7 @@ namespace UI {
         scrollbar.setPosition({pos.x + (size.x - scrollbarSize.x), pos.y});
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::recomputeSizes() {
+    template<class DataType> void ScrollWindow<DataType>::recomputeSizes() {
         scrollbar.setSize({scrollbar.getSize().x, background.getSize().y});
         float fullElemHeight = this->getFullElemHeight();
         sf::Vector2f size = background.getSize();
@@ -126,45 +126,45 @@ namespace UI {
         this->recomputePos();
     }
 
-    template<class DataType> float ScrollWindow_0<DataType>::getFullElemHeight() {
+    template<class DataType> float ScrollWindow<DataType>::getFullElemHeight() {
         float sum = 0.f;
         if (data != nullptr) for (int i = 0; i < data->size(); i++) sum += data->at(i).getSize().y;
         return sum;
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::setPosition(const sf::Vector2f& pos) {
+    template<class DataType> void ScrollWindow<DataType>::setPosition(const sf::Vector2f& pos) {
         background.setPosition(pos);
         this->recomputePos();
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::setPosition(float x, float y) {
+    template<class DataType> void ScrollWindow<DataType>::setPosition(float x, float y) {
         background.setPosition(x, y);
         this->recomputePos();
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::setSize(const sf::Vector2f& size) {
+    template<class DataType> void ScrollWindow<DataType>::setSize(const sf::Vector2f& size) {
         background.setSize(size);
         this->recomputeSizes();
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::setHoverAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setHoverAction(fnc);}
-    template<class DataType> void ScrollWindow_0<DataType>::setUnHoverAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setUnHoverAction(fnc);}
-    template<class DataType> void ScrollWindow_0<DataType>::setClickAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setClickAction(fnc);}
-    template<class DataType> void ScrollWindow_0<DataType>::setUnClickAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setUnClickAction(fnc);}
+    template<class DataType> void ScrollWindow<DataType>::setHoverAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setHoverAction(fnc);}
+    template<class DataType> void ScrollWindow<DataType>::setUnHoverAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setUnHoverAction(fnc);}
+    template<class DataType> void ScrollWindow<DataType>::setClickAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setClickAction(fnc);}
+    template<class DataType> void ScrollWindow<DataType>::setUnClickAction(std::function<void(Scroll* scrollbar)> fnc) {scrollbar.setUnClickAction(fnc);}
 
-    template<class DataType> void ScrollWindow_0<DataType>::setData(std::vector<DataType>* newData) {
+    template<class DataType> void ScrollWindow<DataType>::setData(std::vector<DataType>* newData) {
         data = newData;
         this->recomputeInternalData();
     }
 
-    template<class DataType> sf::Vector2f ScrollWindow_0<DataType>::getPosition() {return background.getPosition();}
-    template<class DataType> sf::Vector2f ScrollWindow_0<DataType>::getSize() {return background.getSize();}
+    template<class DataType> sf::Vector2f ScrollWindow<DataType>::getPosition() {return background.getPosition();}
+    template<class DataType> sf::Vector2f ScrollWindow<DataType>::getSize() {return background.getSize();}
 
-    template<class DataType> void ScrollWindow_0<DataType>::startHold(const sf::Vector2f& mousePos) {scrollbar.startHold(mousePos);}
-    template<class DataType> void ScrollWindow_0<DataType>::updateHold(const sf::Vector2f& mousePos) {scrollbar.updateHold(mousePos);}
-    template<class DataType> void ScrollWindow_0<DataType>::endHold() {scrollbar.endHold();}
+    template<class DataType> void ScrollWindow<DataType>::startHold(const sf::Vector2f& mousePos) {scrollbar.startHold(mousePos);}
+    template<class DataType> void ScrollWindow<DataType>::updateHold(const sf::Vector2f& mousePos) {scrollbar.updateHold(mousePos);}
+    template<class DataType> void ScrollWindow<DataType>::endHold() {scrollbar.endHold();}
 
-    template<class DataType> bool ScrollWindow_0<DataType>::isMouseOverElem(const sf::Vector2f& mousePos) {
+    template<class DataType> bool ScrollWindow<DataType>::isMouseOverElem(const sf::Vector2f& mousePos) {
         if (data == nullptr) return false;
         sf::Vector2f size = background.getSize();
         float
@@ -183,12 +183,12 @@ namespace UI {
         return false;
     }
 
-    template<class DataType> void ScrollWindow_0<DataType>::hover() {scrollbar.hover();}
-    template<class DataType> void ScrollWindow_0<DataType>::unHover() {scrollbar.unHover();}
-    template<class DataType> void ScrollWindow_0<DataType>::click() {scrollbar.click();}
-    template<class DataType> void ScrollWindow_0<DataType>::unClick() {scrollbar.unClick();}
+    template<class DataType> void ScrollWindow<DataType>::hover() {scrollbar.hover();}
+    template<class DataType> void ScrollWindow<DataType>::unHover() {scrollbar.unHover();}
+    template<class DataType> void ScrollWindow<DataType>::click() {scrollbar.click();}
+    template<class DataType> void ScrollWindow<DataType>::unClick() {scrollbar.unClick();}
 
-    template<class DataType> void ScrollWindow_0<DataType>::recomputeInternalData() {
+    template<class DataType> void ScrollWindow<DataType>::recomputeInternalData() {
         scrollbar.setScrollVirtualHeight(this->getFullElemHeight());
         scrollbar.setScrollSize({0, (data != nullptr ? data->size() : 0)});
         this->recomputeSizes();
