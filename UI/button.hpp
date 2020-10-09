@@ -149,7 +149,10 @@ namespace UI{
         this->recomputePos();
     }
 
-    template<class BackgroundType> void Button<BackgroundType>::setString(const std::string& str) {text.setString(str);}
+    template<class BackgroundType> void Button<BackgroundType>::setString(const std::string& str) {
+        text.setString(str);
+        this->recomputeSizes();
+    }
 
     template<class BackgroundType> void Button<BackgroundType>::setCharacterSize(int size) {
         text.setCharacterSize(size);
