@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "forward_decls.hpp"
+#include <unordered_map>
 #include <functional>
 #include <iostream>
 #include <string>
