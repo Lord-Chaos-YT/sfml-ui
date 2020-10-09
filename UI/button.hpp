@@ -156,7 +156,10 @@ namespace UI{
         this->recomputeSizes();
     }
 
-    template<class BackgroundType> void Button<BackgroundType>::setFont(const sf::Font& font) {text.setFont(font);}
+    template<class BackgroundType> void Button<BackgroundType>::setFont(const sf::Font& font) {
+        text.setFont(font);
+        this->recomputeSizes();
+    }
 
     template<class BackgroundType> void Button<BackgroundType>::setOutlineColor(const sf::Color& color, bool temp) {
         background.setOutlineColor(color);
