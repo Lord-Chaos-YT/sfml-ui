@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef BACKGROUND_HPP
-#define BACKGROUND_HPP
+#ifndef UI_BACKGROUND_HPP
+#define UI_BACKGROUND_HPP
 
 #include "constants.hpp"
 #include "concrete.hpp"

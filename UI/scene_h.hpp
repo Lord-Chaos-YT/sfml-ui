@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef SCENE_H_HPP
-#define SCENE_H_HPP
+#ifndef UI_SCENE_H_HPP
+#define UI_SCENE_H_HPP
 
 #include <SFML/Graphics.hpp>
 #include "forward_decls.hpp"

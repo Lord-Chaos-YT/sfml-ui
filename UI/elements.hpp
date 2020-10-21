@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef ELEMENTS_HPP
-#define ELEMENTS_HPP
+#ifndef UI_ELEMENTS_HPP
+#define UI_ELEMENTS_HPP
 
 #include <SFML/Graphics.hpp>
 #include "concrete.hpp"

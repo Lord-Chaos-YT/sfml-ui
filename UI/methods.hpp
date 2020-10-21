@@ -1,13 +1,13 @@
 #define SFML_STATIC
 
-#ifndef TEST_HPP
-#define TEST_HPP
+#ifndef UI_TEST_HPP
+#define UI_TEST_HPP
 
 #include <SFML/Graphics.hpp>
 #include "constants.hpp"
 #include <cstdlib>
 #include <string>
-#include <math.h>
+#include <cmath>
 
 //using namespace std;
 

@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef KEYMAPS_HPP
-#define KEYMAPS_HPP
+#ifndef UI_KEYMAPS_HPP
+#define UI_KEYMAPS_HPP
 
 #include <unordered_map>
 #include <SFML/Graphics.hpp>

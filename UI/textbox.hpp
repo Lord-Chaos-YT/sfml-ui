@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef TEXTBOX0_HPP
-#define TEXTBOX0_HPP
+#ifndef UI_TEXTBOX_HPP
+#define UI_TEXTBOX_HPP
 
 #include <SFML/Graphics.hpp>
 #include "textcursor.hpp"

@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef CONCRETE_H_HPP
-#define CONCRETE_H_HPP
+#ifndef UI_CONCRETE_H_HPP
+#define UI_CONCRETE_H_HPP
 
 #include <SFML/Graphics.hpp>
 #include "forward_decls.hpp"

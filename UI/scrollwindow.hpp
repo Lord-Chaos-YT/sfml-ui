@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef SCROLLWINDOW_HPP
-#define SCROLLWINDOW_HPP
+#ifndef UI_SCROLLWINDOW_HPP
+#define UI_SCROLLWINDOW_HPP
 
 #include <SFML/Graphics.hpp>
 #include "concrete.hpp"

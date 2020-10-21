@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef FORWARD_HPP
-#define FORWARD_HPP
+#ifndef UI_FORWARD_HPP
+#define UI_FORWARD_HPP
 
 namespace UI {
     class Scene;

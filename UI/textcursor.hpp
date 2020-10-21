@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef TEXTCURSOR_HPP
-#define TEXTCURSOR_HPP
+#ifndef UI_TEXTCURSOR_HPP
+#define UI_TEXTCURSOR_HPP
 
 #include <SFML/Graphics.hpp>
 #include "constants.hpp"

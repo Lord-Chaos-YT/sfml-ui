@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef ENTRYFIELD_HPP
-#define ENTRYFIELD_HPP
+#ifndef UI_ENTRYFIELD_HPP
+#define UI_ENTRYFIELD_HPP
 
 #include <SFML/Graphics.hpp>
 #include "background.hpp"

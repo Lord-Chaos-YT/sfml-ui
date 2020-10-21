@@ -6,8 +6,8 @@
 #define SFML_STATIC
 
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#ifndef UI_MAIN_HPP
+#define UI_MAIN_HPP
 
 
 #include <SFML/Graphics.hpp>

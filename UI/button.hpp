@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#ifndef UI_BUTTON_HPP
+#define UI_BUTTON_HPP
 
 #include <SFML/Graphics.hpp>
 #include "background.hpp"

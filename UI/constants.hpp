@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef CONSTANTS_HPP
-#define CONSTANTS_HPP
+#ifndef UI_CONSTANTS_HPP
+#define UI_CONSTANTS_HPP
 
 #include <SFML/Graphics.hpp>
 

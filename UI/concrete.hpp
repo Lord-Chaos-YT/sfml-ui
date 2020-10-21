@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef FOCUSABLE_HPP
-#define FOCUSABLE_HPP
+#ifndef UI_FOCUSABLE_HPP
+#define UI_FOCUSABLE_HPP
 
 #include <SFML/Graphics.hpp>
 #include "concrete_h.hpp"

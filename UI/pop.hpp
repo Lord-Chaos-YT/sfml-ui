@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef SHADOW_HPP
-#define SHADOW_HPP
+#ifndef UI_SHADOW_HPP
+#define UI_SHADOW_HPP
 
 #include <SFML/Graphics.hpp>
 #include "constants.hpp"

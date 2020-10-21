@@ -1,7 +1,7 @@
 #define SFML_STATIC
 
-#ifndef SCROLL_HPP
-#define SCROLL_HPP
+#ifndef UI_SCROLL_HPP
+#define UI_SCROLL_HPP
 
 #include <SFML/Graphics.hpp>
 #include "background.hpp"
