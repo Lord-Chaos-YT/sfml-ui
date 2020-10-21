@@ -32,7 +32,7 @@
 using namespace std;
 
 int init(int argCount, char* args[],
-function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus* focus, UI::Hold* hold, UI::Hover* hover, UI::Scene* currentScene)> initFnc,
+function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus*& focus, UI::Hold*& hold, UI::Hover*& hover, UI::Scene*& currentScene)> initFnc,
 string windowTitle = "Test") {
     // Only show console if the argument "console" is used
     if (argCount > 1 && (string)args[1] == "console");
