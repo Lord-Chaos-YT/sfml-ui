@@ -41,7 +41,7 @@ string dir = "", string windowTitle = "Test") {
     // Main window & font declarations
     sf::RenderWindow window(sf::VideoMode(UI::winW, UI::winH), windowTitle, sf::Style::Default);
     sf::Font font;
-    if (!font.loadFromFile("./" + dir + "/fonts/cour.ttf")) throw "Couldn't find font";
+    if (!font.loadFromFile("." + dir + "/fonts/cour.ttf")) throw "Couldn't find font";
 
     // Cursor alternatives declarations
     sf::Cursor normalCursor, textBoxCursor;
