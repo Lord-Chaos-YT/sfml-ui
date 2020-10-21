@@ -23,6 +23,11 @@ namespace UI {
     sf::Vector2f centerStrInBounds(const sf::Vector2f& textSize, const sf::Vector2f& bgSize, const sf::Vector2f& pos = {0, 0}) {
         return center(textSize, {pos.x + (bgSize.x / 2.f), (pos.y + (bgSize.y / 2.f)) - (textSize.y / 8.f)});
     }
+
+    double distanceBetween(const sf::Vector2f& a, const sf::Vector2f& b) {
+        sf::Vector2f absVect = {b.x - a.x, b.y - a.y};
+        return sqrt(pow(absVect.x, 2.f) + pow(absVect.y, 2.f));
+    }
 };
 
 #endif
