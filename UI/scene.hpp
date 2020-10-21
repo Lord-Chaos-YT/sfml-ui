@@ -14,10 +14,10 @@
 
 namespace UI {
     Scene::Scene(
-        std::unordered_map<std::string, Focus*> focusVect,
-        std::unordered_map<std::string, Hold*> holdVect,
-        std::unordered_map<std::string, Hover*> hoverVect,
-        std::unordered_map<std::string, sf::Drawable*> drawVect
+        std::map<std::string, Focus*> focusVect,
+        std::map<std::string, Hold*> holdVect,
+        std::map<std::string, Hover*> hoverVect,
+        std::map<std::string, sf::Drawable*> drawVect
     ) {
         focusable = focusVect;
         holdable = holdVect;

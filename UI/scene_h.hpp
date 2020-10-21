@@ -5,7 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "forward_decls.hpp"
-#include <unordered_map>
+#include <map>
 #include <functional>
 #include <iostream>
 #include <string>
@@ -16,20 +16,20 @@ namespace UI {
     class Scene : public sf::Drawable {
     public:
         std::function<void(Scene* scene)> onSceneSwitchTo, onSceneSwitchAway, onTick;
-        std::unordered_map<std::string, Focus*> focusable;
-        std::unordered_map<std::string, Hold*> holdable;
-        std::unordered_map<std::string, Hover*> hoverable;
-        std::unordered_map<std::string, sf::Drawable*> drawable;
+        std::map<std::string, Focus*> focusable;
+        std::map<std::string, Hold*> holdable;
+        std::map<std::string, Hover*> hoverable;
+        std::map<std::string, sf::Drawable*> drawable;
     private:
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
             for (auto val : drawable) target.draw(*val.second, states);
         }
     public:
         Scene(
-            std::unordered_map<std::string, Focus*> focusVect = {},
-            std::unordered_map<std::string, Hold*> holdVect = {},
-            std::unordered_map<std::string, Hover*> hoverVect = {},
-            std::unordered_map<std::string, sf::Drawable*> drawVect = {}
+            std::map<std::string, Focus*> focusVect = {},
+            std::map<std::string, Hold*> holdVect = {},
+            std::map<std::string, Hover*> hoverVect = {},
+            std::map<std::string, sf::Drawable*> drawVect = {}
         );
 
         void setSwitchToAction(std::function<void(Scene* scene)> fnc);
