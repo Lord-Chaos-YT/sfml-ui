@@ -33,7 +33,7 @@ using namespace std;
 
 int init(int argCount, char* args[],
 function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus*& focus, UI::Hold*& hold, UI::Hover*& hover, UI::Scene*& currentScene)> initFnc,
-string windowTitle = "Test") {
+string dir = "", string windowTitle = "Test") {
     // Only show console if the argument "console" is used
     if (argCount > 1 && (string)args[1] == "console");
     else ShowWindow(FindWindowA("ConsoleWindowClass", NULL), false);
@@ -41,7 +41,7 @@ string windowTitle = "Test") {
     // Main window & font declarations
     sf::RenderWindow window(sf::VideoMode(UI::winW, UI::winH), windowTitle, sf::Style::Default);
     sf::Font font;
-    if (!font.loadFromFile("./fonts/cour.ttf")) throw "Couldn't find font";
+    if (!font.loadFromFile("./" + dir + "/fonts/cour.ttf")) throw "Couldn't find font";
 
     // Cursor alternatives declarations
     sf::Cursor normalCursor, textBoxCursor;
