@@ -32,7 +32,7 @@
 using namespace std;
 
 int init(int argCount, char* args[],
-function<void(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus*& focus, UI::Hold*& hold, UI::Hover*& hover, UI::Scene*& currentScene)> initFnc,
+function<function<void(sf::Time& time)>(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus*& focus, UI::Hold*& hold, UI::Hover*& hover, UI::Scene*& currentScene)> initFnc,
 string dir = "", string windowTitle = "Test") {
     // Only show console if the argument "console" is used
     if (argCount > 1 && (string)args[1] == "console");
@@ -55,7 +55,7 @@ string dir = "", string windowTitle = "Test") {
     UI::Hover* hover = nullptr;
     UI::Scene* currentScene = nullptr;
 
-    initFnc(window, font, normalCursor, textBoxCursor, clock, focus, hold, hover, currentScene);
+    function<void(sf::Time& time)> tick = initFnc(window, font, normalCursor, textBoxCursor, clock, focus, hold, hover, currentScene);
 
     
     while (window.isOpen()) {
@@ -133,6 +133,7 @@ string dir = "", string windowTitle = "Test") {
         /**
          * Draw the current scene.
          */
+        if (tick) tick(time);
         window.clear();
         if (currentScene != nullptr) window.draw(*currentScene);
         window.display();
