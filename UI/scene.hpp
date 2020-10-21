@@ -14,10 +14,10 @@
 
 namespace UI {
     Scene::Scene(
-        std::map<std::string, Focus*> focusVect,
-        std::map<std::string, Hold*> holdVect,
-        std::map<std::string, Hover*> hoverVect,
-        std::map<std::string, sf::Drawable*> drawVect
+        std::vector<Focus*> focusVect,
+        std::vector<Hold*> holdVect,
+        std::vector<Hover*> hoverVect,
+        std::vector<sf::Drawable*> drawVect
     ) {
         focusable = focusVect;
         holdable = holdVect;
@@ -39,7 +39,7 @@ namespace UI {
     }
 
     sf::Drawable* Scene::addElem(const std::string& name, sf::Drawable* elem) {
-        this->drawable.insert({name, elem});
+        this->drawable.push_back(elem);
         return elem;
     }
 };

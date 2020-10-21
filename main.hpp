@@ -78,16 +78,16 @@ string dir = "", string windowTitle = "Test") {
                     }
                 }
 
-                for (auto val : currentScene->focusable) if (val.second->isMouseOver(mousePos)) {
-                    focus = val.second;
+                for (auto val : currentScene->focusable) if (val->isMouseOver(mousePos)) {
+                    focus = val;
                     break;
                 }
-                for (auto val : currentScene->holdable) if (val.second->isMouseOver(mousePos)) {
-                    hold = val.second;
+                for (auto val : currentScene->holdable) if (val->isMouseOver(mousePos)) {
+                    hold = val;
                     break;
                 }
-                for (auto val : currentScene->hoverable) if (val.second->isMouseOver(mousePos)) {
-                    val.second->click();
+                for (auto val : currentScene->hoverable) if (val->isMouseOver(mousePos)) {
+                    val->click();
                 }
 
                 if (hold != nullptr) hold->startHold(mousePos), hold->click();
@@ -104,9 +104,9 @@ string dir = "", string windowTitle = "Test") {
                 if (focus != nullptr) focus->unClick();
             } else if (event.type == sf::Event::MouseMoved) {
                 for (auto val : currentScene->hoverable) {
-                    if (val.second->isMouseOver(mousePos) && hover != val.second) {
+                    if (val->isMouseOver(mousePos) && hover != val) {
                         if (hover != nullptr) hover->unHover();
-                        hover = val.second;
+                        hover = val;
                         break;
                     }
                 }
