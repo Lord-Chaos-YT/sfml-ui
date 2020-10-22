@@ -11,9 +11,9 @@
 //using namespace std;
 
 namespace UI {
-    void Concrete::addScene(const std::string& name, Scene* scene) {(scene->drawable).push_back(this);}
+    void Concrete::addScene(Scene* scene) {(scene->drawable).push_back(this);}
 
-    void Hover::addScene(const std::string& name, Scene* scene) {
+    void Hover::addScene(Scene* scene) {
         (scene->drawable).push_back(this);
         (scene->hoverable).push_back(this);
     }
@@ -23,13 +23,13 @@ namespace UI {
         return (sf::FloatRect{pos.x, pos.y, size.x, size.y}).contains(mousePos);
     }
 
-    void Focus::addScene(const std::string& name, Scene* scene) {
+    void Focus::addScene(Scene* scene) {
         (scene->drawable).push_back(this);
         (scene->hoverable).push_back(this);
         (scene->focusable).push_back(this);
     }
 
-    void Hold::addScene(const std::string& name, Scene* scene) {
+    void Hold::addScene(Scene* scene) {
         (scene->drawable).push_back(this);
         (scene->hoverable).push_back(this);
         (scene->holdable).push_back(this);

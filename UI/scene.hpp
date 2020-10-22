@@ -33,12 +33,12 @@ namespace UI {
     void Scene::switchAway() {if ((bool)onSceneSwitchAway) onSceneSwitchAway(this);}
     void Scene::tick() {if ((bool)onTick) onTick(this);}
 
-    Concrete* Scene::addElem(const std::string& name, Concrete* elem) {
-        elem->addScene(name, this);
+    Concrete* Scene::addElem(Concrete* elem) {
+        elem->addScene(this);
         return elem;
     }
 
-    sf::Drawable* Scene::addElem(const std::string& name, sf::Drawable* elem) {
+    sf::Drawable* Scene::addElem(sf::Drawable* elem) {
         this->drawable.push_back(elem);
         return elem;
     }

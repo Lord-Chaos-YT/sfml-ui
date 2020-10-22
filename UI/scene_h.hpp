@@ -40,8 +40,8 @@ namespace UI {
         void switchAway();
         void tick();
 
-        Concrete* addElem(const std::string& name, Concrete* elem);
-        sf::Drawable* addElem(const std::string& name, sf::Drawable* elem);
+        Concrete* addElem(Concrete* elem);
+        sf::Drawable* addElem(sf::Drawable* elem);
     };
 };
 
