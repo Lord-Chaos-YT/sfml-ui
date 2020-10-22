@@ -56,9 +56,9 @@ namespace UI {
         void invert(bool temp = false);
         void revert();
 
-        sf::Vector2f getPosition();
-        sf::Vector2f getSize();
-        float getScrollPosition();
+        const sf::Vector2f getPosition();
+        const sf::Vector2f getSize();
+        const float getScrollPosition();
 
         void startHold(const sf::Vector2f& mousePos);
         void updateHold(const sf::Vector2f& mousePos);
@@ -160,9 +160,9 @@ namespace UI {
     void Scroll::invert(bool temp) {bar.invert(temp);}
     void Scroll::revert() {bar.revert();}
 
-    sf::Vector2f Scroll::getPosition() {return base.getPosition();}
-    sf::Vector2f Scroll::getSize() {return base.getSize();}
-    float Scroll::getScrollPosition() {return scrollPosition;}
+    const sf::Vector2f Scroll::getPosition() {return base.getPosition();}
+    const sf::Vector2f Scroll::getSize() {return base.getSize();}
+    const float Scroll::getScrollPosition() {return scrollPosition;}
 
     void Scroll::startHold(const sf::Vector2f& mousePos) {
         sf::Vector2f pos = bar.getPosition(), size = bar.getSize();

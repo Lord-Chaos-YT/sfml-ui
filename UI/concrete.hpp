@@ -18,7 +18,7 @@ namespace UI {
         (scene->hoverable).push_back(this);
     }
 
-    bool Hover::isMouseOver(const sf::Vector2f& mousePos) {
+    const bool Hover::isMouseOver(const sf::Vector2f& mousePos) {
         sf::Vector2f pos = this->getPosition(), size = this->getSize();
         return (sf::FloatRect{pos.x, pos.y, size.x, size.y}).contains(mousePos);
     }

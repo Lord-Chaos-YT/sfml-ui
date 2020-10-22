@@ -27,11 +27,11 @@ namespace UI {
         virtual void setSize(const sf::Vector2f& size);
         virtual void setShadowColor(const sf::Color& color) {base.setFillColor(color);}
         
-        virtual const sf::Vector2f& getSize();
-        virtual sf::Vector2f getPosition();
-        virtual sf::Color getOutlineColor();
-        virtual sf::Color getFillColor();
-        virtual float getOutlineThickness();
+        virtual const sf::Vector2f getSize();
+        virtual const sf::Vector2f getPosition();
+        virtual const sf::Color getOutlineColor();
+        virtual const sf::Color getFillColor();
+        virtual const float getOutlineThickness();
     };
 
     Background::Background() {}
@@ -42,11 +42,11 @@ namespace UI {
     void Background::setPosition(const sf::Vector2f& pos) {base.setPosition(pos);}
     void Background::setPosition(float x, float y) {base.setPosition(x, y);}
     void Background::setSize(const sf::Vector2f& size) {base.setSize(size);}
-    const sf::Vector2f& Background::getSize() {return base.getSize();}
-    sf::Vector2f Background::getPosition() {return base.getPosition();}
-    sf::Color Background::getOutlineColor() {return base.getOutlineColor();}
-    sf::Color Background::getFillColor() {return base.getFillColor();}
-    float Background::getOutlineThickness() {return base.getOutlineThickness();}
+    const sf::Vector2f Background::getSize() {return base.getSize();}
+    const sf::Vector2f Background::getPosition() {return base.getPosition();}
+    const sf::Color Background::getOutlineColor() {return base.getOutlineColor();}
+    const sf::Color Background::getFillColor() {return base.getFillColor();}
+    const float Background::getOutlineThickness() {return base.getOutlineThickness();}
 
     class PopBackground : public Background {
     private:
@@ -81,13 +81,13 @@ namespace UI {
         void setHighlightColor(const sf::Color& color);
         void invert(bool temp = false);
         void revert();
-        const sf::Vector2f& getSize();
-        sf::Vector2f getPosition();
-        sf::Color getOutlineColor();
-        sf::Color getFillColor();
-        sf::Color getShadowColor();
-        sf::Color getHighlightColor();
-        float getOutlineThickness();
+        const sf::Vector2f getSize();
+        const sf::Vector2f getPosition();
+        const sf::Color getOutlineColor();
+        const sf::Color getFillColor();
+        const sf::Color getShadowColor();
+        const sf::Color getHighlightColor();
+        const float getOutlineThickness();
     };
 
     PopBackground::PopBackground(
@@ -171,13 +171,13 @@ namespace UI {
         this->setHighlightColor(highlightColor);
     }
 
-    const sf::Vector2f& PopBackground::getSize() {return base.getSize();}
-    sf::Vector2f PopBackground::getPosition() {return base.getPosition();}
-    sf::Color PopBackground::getOutlineColor() {return base.getOutlineColor();}
-    sf::Color PopBackground::getFillColor() {return base.getFillColor();}
-    sf::Color PopBackground::getShadowColor() {return shadowColor;}
-    sf::Color PopBackground::getHighlightColor() {return highlightColor;}
-    float PopBackground::getOutlineThickness() {return base.getOutlineThickness();}
+    const sf::Vector2f PopBackground::getSize() {return base.getSize();}
+    const sf::Vector2f PopBackground::getPosition() {return base.getPosition();}
+    const sf::Color PopBackground::getOutlineColor() {return base.getOutlineColor();}
+    const sf::Color PopBackground::getFillColor() {return base.getFillColor();}
+    const sf::Color PopBackground::getShadowColor() {return shadowColor;}
+    const sf::Color PopBackground::getHighlightColor() {return highlightColor;}
+    const float PopBackground::getOutlineThickness() {return base.getOutlineThickness();}
 };
 
 #endif

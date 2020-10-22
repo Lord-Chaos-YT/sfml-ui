@@ -32,7 +32,7 @@ namespace UI {
         void recomputePos();
         void recomputeSizes();
 
-        float getStrWidth(std::string str, sf::Text& test);
+        const float getStrWidth(std::string str, sf::Text& test);
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
             target.draw(background, states);
@@ -74,9 +74,9 @@ namespace UI {
         void setEnterAction(std::function<void(TextBox* textbox, std::string buffer)> fnc);
         void setBuffer(std::string str = "");
 
-        sf::Vector2f getPosition();
-        sf::Vector2f getSize();
-        std::string getBuffer();
+        const sf::Vector2f getPosition();
+        const sf::Vector2f getSize();
+        const std::string getBuffer();
 
         void startFocus(const sf::Time& time);
         void focusTick(const sf::Time& time);
@@ -226,7 +226,7 @@ namespace UI {
         this->recomputePos();
     }
 
-    float TextBox::getStrWidth(std::string str, sf::Text& test) {
+    const float TextBox::getStrWidth(std::string str, sf::Text& test) {
         test.setString(str);
         return test.getLocalBounds().width;
     }
@@ -270,9 +270,9 @@ namespace UI {
         this->recomputeText();
     }
 
-    sf::Vector2f TextBox::getPosition() {return background.getPosition();}
-    sf::Vector2f TextBox::getSize() {return background.getSize();}
-    std::string TextBox::getBuffer() {return text.getString();}
+    const sf::Vector2f TextBox::getPosition() {return background.getPosition();}
+    const sf::Vector2f TextBox::getSize() {return background.getSize();}
+    const std::string TextBox::getBuffer() {return text.getString();}
 
     void TextBox::startFocus(const sf::Time& time) {
         cursor.display();
