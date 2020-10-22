@@ -20,7 +20,7 @@ namespace UI {
         sf::Sprite sprite;
         std::vector<DataType>* data = nullptr;
 
-        const float getFullElemHeight();
+        float getFullElemHeight() const;
 
         void recomputePos();
         void recomputeSizes();
@@ -47,13 +47,13 @@ namespace UI {
         void setUnClickAction(std::function<void(Scroll* scrollbar)> fnc);
         void setData(std::vector<DataType>* newData);
 
-        const sf::Vector2f getPosition();
-        const sf::Vector2f getSize();
+        sf::Vector2f getPosition() const;
+        sf::Vector2f getSize() const;
 
         void startHold(const sf::Vector2f& mousePos);
         void updateHold(const sf::Vector2f& mousePos);
         void endHold();
-        const bool isMouseOverElem(const sf::Vector2f& mousePos);
+        bool isMouseOverElem(const sf::Vector2f& mousePos) const;
 
         void hover();
         void unHover();
@@ -126,7 +126,7 @@ namespace UI {
         this->recomputePos();
     }
 
-    template<class DataType> const float ScrollWindow<DataType>::getFullElemHeight() {
+    template<class DataType> float ScrollWindow<DataType>::getFullElemHeight() const {
         float sum = 0.f;
         if (data != nullptr) for (int i = 0; i < data->size(); i++) sum += data->at(i).getSize().y;
         return sum;
@@ -157,14 +157,14 @@ namespace UI {
         this->recomputeInternalData();
     }
 
-    template<class DataType> const sf::Vector2f ScrollWindow<DataType>::getPosition() {return background.getPosition();}
-    template<class DataType> const sf::Vector2f ScrollWindow<DataType>::getSize() {return background.getSize();}
+    template<class DataType> sf::Vector2f ScrollWindow<DataType>::getPosition() const {return background.getPosition();}
+    template<class DataType> sf::Vector2f ScrollWindow<DataType>::getSize() const {return background.getSize();}
 
     template<class DataType> void ScrollWindow<DataType>::startHold(const sf::Vector2f& mousePos) {scrollbar.startHold(mousePos);}
     template<class DataType> void ScrollWindow<DataType>::updateHold(const sf::Vector2f& mousePos) {scrollbar.updateHold(mousePos);}
     template<class DataType> void ScrollWindow<DataType>::endHold() {scrollbar.endHold();}
 
-    template<class DataType> const bool ScrollWindow<DataType>::isMouseOverElem(const sf::Vector2f& mousePos) {
+    template<class DataType> bool ScrollWindow<DataType>::isMouseOverElem(const sf::Vector2f& mousePos) const {
         if (data == nullptr) return false;
         sf::Vector2f size = background.getSize();
         float

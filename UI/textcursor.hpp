@@ -28,9 +28,9 @@ namespace UI {
         void setPadding(float pad);
         void setFillColor(const sf::Color& color);
 
-        const unsigned int getCharacterSize();
-        const sf::Color getFillColor();
-        const bool isDisplayed();
+        unsigned int getCharacterSize() const;
+        sf::Color getFillColor() const;
+        bool isDisplayed() const;
     };
 
     TextCursor::TextCursor(const sf::Vector2f& pos, unsigned int textSize, const sf::Color& color, float pad) {
@@ -52,9 +52,9 @@ namespace UI {
 
     void TextCursor::setFillColor(const sf::Color& color) {cursor.setFillColor(color);}
 
-    const unsigned int TextCursor::getCharacterSize() {return charSize;}
-    const sf::Color TextCursor::getFillColor() {return cursor.getFillColor();}
-    const bool TextCursor::isDisplayed() {return displayed;}
+    unsigned int TextCursor::getCharacterSize() const {return charSize;}
+    sf::Color TextCursor::getFillColor() const {return cursor.getFillColor();}
+    bool TextCursor::isDisplayed() const {return displayed;}
 };
 
 #endif

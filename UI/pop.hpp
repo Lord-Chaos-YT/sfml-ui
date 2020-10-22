@@ -84,7 +84,7 @@ namespace UI {
         void setShadow(const sf::Color& color);
         void setDrawOrder(int order);
 
-        const sf::Vector2f getSize();
+        sf::Vector2f getSize() const;
     };
 
     Pop::Pop(
@@ -233,7 +233,7 @@ namespace UI {
         else throw "Given order is out of range! Must be a number on [0, 3].";
     }
 
-    const sf::Vector2f Pop::getSize() {return {top.getSize().x, left.getSize().y};}
+    sf::Vector2f Pop::getSize() const {return {top.getSize().x, left.getSize().y};}
 };
 
 #endif

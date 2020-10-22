@@ -44,8 +44,8 @@ namespace UI {
         void setTextColor(const sf::Color& color);
         void setCharacterSize(float size);
 
-        const sf::Vector2f getPosition();
-        const sf::Vector2f getSize();
+        sf::Vector2f getPosition() const;
+        sf::Vector2f getSize() const;
 
         void drawText(sf::RenderTarget& target) {
             target.draw(text);
@@ -123,8 +123,8 @@ namespace UI {
         this->recomputeSizes();
     }
 
-    const sf::Vector2f Element::getPosition() {return background.getPosition();}
-    const sf::Vector2f Element::getSize() {return background.getSize();}
+    sf::Vector2f Element::getPosition() const {return background.getPosition();}
+    sf::Vector2f Element::getSize() const {return background.getSize();}
 };
 
 #endif

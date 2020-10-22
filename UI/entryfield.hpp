@@ -51,8 +51,8 @@ namespace UI {
         void setOutlineColor(const sf::Color& color);
         void setOutlineThickness(float thickness);
 
-        const sf::Vector2f getPosition();
-        const sf::Vector2f getSize();
+        sf::Vector2f getPosition() const;
+        sf::Vector2f getSize() const;
     };
 
     EntryField::EntryField(
@@ -109,8 +109,8 @@ namespace UI {
     void EntryField::setOutlineColor(const sf::Color& color) {background.setOutlineColor(color);}
     void EntryField::setOutlineThickness(float thickness) {background.setOutlineThickness(thickness);}
 
-    const sf::Vector2f EntryField::getPosition() {return background.getPosition();}
-    const sf::Vector2f EntryField::getSize() {return background.getSize();}
+    sf::Vector2f EntryField::getPosition() const {return background.getPosition();}
+    sf::Vector2f EntryField::getSize() const {return background.getSize();}
 
     /*bool EntryField::isMouseOver(const sf::Vector2f& mousePos) {
         sf::Vector2f pos = this->getPosition();

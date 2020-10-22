@@ -67,13 +67,13 @@ namespace UI{
         void setClickAction(std::function<void(Button* button)> fnc);
         void setUnClickAction(std::function<void(Button* button)> fnc);
 
-        const std::string getString();
-        const sf::Vector2f getSize();
-        const sf::Vector2f getPosition();
-        const sf::Color getOutlineColor();
-        const sf::Color getFillColor();
-        const sf::Color getTextColor();
-        const float getOutlineThickness();
+        std::string getString() const;
+        sf::Vector2f getSize() const;
+        sf::Vector2f getPosition() const;
+        sf::Color getOutlineColor() const;
+        sf::Color getFillColor() const;
+        sf::Color getTextColor() const;
+        float getOutlineThickness() const;
         BackgroundType& getBackground();
 
         void hover();
@@ -83,7 +83,7 @@ namespace UI{
         void revert();
         void defaultClickEffect(bool temp = true);
 
-        const bool isMouseOver(const sf::Vector2f& mousePos);
+        bool isMouseOver(const sf::Vector2f& mousePos) const;
     };
 
     template<class BackgroundType> Button<BackgroundType>::Button(
@@ -190,13 +190,13 @@ namespace UI{
 
 
 
-    template<class BackgroundType> const std::string Button<BackgroundType>::getString() {return text.getString();}
-    template<class BackgroundType> const sf::Vector2f Button<BackgroundType>::getSize() {return background.getSize();}
-    template<class BackgroundType> const sf::Vector2f Button<BackgroundType>::getPosition() {return background.getPosition();}
-    template<class BackgroundType> const sf::Color Button<BackgroundType>::getOutlineColor() {return background.getOutlineColor();}
-    template<class BackgroundType> const sf::Color Button<BackgroundType>::getFillColor() {return background.getFillColor();}
-    template<class BackgroundType> const sf::Color Button<BackgroundType>::getTextColor() {return text.getFillColor();}
-    template<class BackgroundType> const float Button<BackgroundType>::getOutlineThickness() {return background.getOutlineThickness();}
+    template<class BackgroundType> std::string Button<BackgroundType>::getString() const {return text.getString();}
+    template<class BackgroundType> sf::Vector2f Button<BackgroundType>::getSize() const {return background.getSize();}
+    template<class BackgroundType> sf::Vector2f Button<BackgroundType>::getPosition() const {return background.getPosition();}
+    template<class BackgroundType> sf::Color Button<BackgroundType>::getOutlineColor() const {return background.getOutlineColor();}
+    template<class BackgroundType> sf::Color Button<BackgroundType>::getFillColor() const {return background.getFillColor();}
+    template<class BackgroundType> sf::Color Button<BackgroundType>::getTextColor() const {return text.getFillColor();}
+    template<class BackgroundType> float Button<BackgroundType>::getOutlineThickness() const {return background.getOutlineThickness();}
     template<class BackgroundType> BackgroundType& Button<BackgroundType>::getBackground() {return background;}
 
     template<class BackgroundType> void Button<BackgroundType>::hover() {if ((bool)onHover) onHover(this);}
@@ -213,7 +213,7 @@ namespace UI{
 
     template<class BackgroundType> void Button<BackgroundType>::defaultClickEffect(bool temp) {background.invert(temp);}
 
-    template<class BackgroundType> const bool Button<BackgroundType>::isMouseOver(const sf::Vector2f& mousePos) {
+    template<class BackgroundType> bool Button<BackgroundType>::isMouseOver(const sf::Vector2f& mousePos) const {
         sf::Vector2f buttonPos = this->getPosition(), size = this->getSize();
         return (sf::FloatRect{buttonPos.x, buttonPos.y, size.x, size.y}).contains(mousePos);
     }

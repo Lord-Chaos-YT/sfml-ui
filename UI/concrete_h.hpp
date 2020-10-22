@@ -13,14 +13,14 @@
 namespace UI {
     class Concrete : public sf::Drawable {
     public:
-        virtual const sf::Vector2f getPosition() = 0;
-        virtual const sf::Vector2f getSize() = 0;
+        virtual sf::Vector2f getPosition() const = 0;
+        virtual sf::Vector2f getSize() const = 0;
         virtual void addScene(Scene* scene);
     };
 
     class Hover : public Concrete {
     public:
-        virtual const bool isMouseOver(const sf::Vector2f& mousePos);
+        virtual bool isMouseOver(const sf::Vector2f& mousePos) const;
         virtual void hover() = 0;
         virtual void unHover() = 0;
         virtual void click() = 0;
