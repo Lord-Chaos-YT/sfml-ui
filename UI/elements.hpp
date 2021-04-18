@@ -12,11 +12,11 @@
 //using namespace std;
 
 namespace UI {
-    class Element : public Concrete {
-    private:
-        sf::RectangleShape background;
+    template<class BackgroundType = sf::RectangleShape> class Element : public Concrete {
+    protected:
+        BackgroundType background;
         sf::Text text;
-        sf::Vector2f size;
+        sf::Vector2f sizeDefault;
 
         void recomputePos();
         void recomputeSizes();
@@ -29,6 +29,7 @@ namespace UI {
         Element(
             sf::Font& font,
             std::string str = "",
+            bool pop = false,
             unsigned int charSize = 16,
             const sf::Vector2f& initSize = {-1.f, -1.f},
             const sf::Vector2f& pos = {0.f, 0.f},
@@ -53,30 +54,27 @@ namespace UI {
         }
     };
 
-    Element::Element(
+    template<class BackgroundType> Element<BackgroundType>::Element(
         sf::Font& font,
         std::string str,
+        bool pop,
         unsigned int charSize,
         const sf::Vector2f& initSize,
         const sf::Vector2f& pos,
         const sf::Color& textColor,
         const sf::Color& bgColor
-    ) {
-        size = initSize;
-
-        text.setFont(font);
-        text.setString(str);
+    ) : sizeDefault{initSize}, text{str, font, charSize} {
+        if (!std::is_base_of<sf::RectangleShape, BackgroundType>::value) throw "Invalid type specifier. Type must inherit from class sf::RectangleShape!";
         text.setFillColor(textColor);
-        text.setCharacterSize(charSize);
 
         background.setPosition(pos);
-        background.setSize(size);
+        background.setSize(sizeDefault);
         background.setFillColor(bgColor);
 
         this->recomputeSizes();
     }
 
-    void Element::recomputePos() {
+    template<class BackgroundType> void Element<BackgroundType>::recomputePos() {
         sf::Vector2f pos = background.getPosition();
         text.setPosition(centerStrInBounds(
             {text.getLocalBounds().width, (float)text.getCharacterSize()},
@@ -84,47 +82,47 @@ namespace UI {
         ));
     }
 
-    void Element::recomputeSizes() {
+    template<class BackgroundType> void Element<BackgroundType>::recomputeSizes() {
         sf::Vector2f textSize = {text.getLocalBounds().width, (float)text.getCharacterSize()},
             sizes = {0.f, 0.f};
-        if (size.x == -1.f) sizes.x = textSize.x + 16.f;
-        else sizes.x = size.x;
-        if (size.y == -1.f) sizes.y = textSize.y + 8.f;
-        else sizes.y = size.y;
+        if (sizeDefault.x == -1.f) sizes.x = textSize.x + 16.f;
+        else sizes.x = sizeDefault.x;
+        if (sizeDefault.y == -1.f) sizes.y = textSize.y + 8.f;
+        else sizes.y = sizeDefault.y;
         background.setSize(sizes);
         this->recomputePos();
     }
 
-    void Element::setPosition(const sf::Vector2f& pos) {
+    template<class BackgroundType> void Element<BackgroundType>::setPosition(const sf::Vector2f& pos) {
         background.setPosition(pos);
         this->recomputePos();
     }
 
-    void Element::setPosition(float x, float y) {
+    template<class BackgroundType> void Element<BackgroundType>::setPosition(float x, float y) {
         background.setPosition(x, y);
         this->recomputePos();
     }
 
-    void Element::setSize(const sf::Vector2f& size) {
+    template<class BackgroundType> void Element<BackgroundType>::setSize(const sf::Vector2f& size) {
         background.setSize(size);
         this->recomputeSizes();
     }
 
-    void Element::setString(std::string str) {
+    template<class BackgroundType> void Element<BackgroundType>::setString(std::string str) {
         text.setString(str);
         this->recomputeSizes();
     }
 
-    void Element::setFillColor(const sf::Color& color) {background.setFillColor(color);}
-    void Element::setTextColor(const sf::Color& color) {text.setFillColor(color);}
+    template<class BackgroundType> void Element<BackgroundType>::setFillColor(const sf::Color& color) {background.setFillColor(color);}
+    template<class BackgroundType> void Element<BackgroundType>::setTextColor(const sf::Color& color) {text.setFillColor(color);}
 
-    void Element::setCharacterSize(float size) {
+    template<class BackgroundType> void Element<BackgroundType>::setCharacterSize(float size) {
         text.setCharacterSize(size);
         this->recomputeSizes();
     }
 
-    sf::Vector2f Element::getPosition() const {return background.getPosition();}
-    sf::Vector2f Element::getSize() const {return background.getSize();}
+    template<class BackgroundType> sf::Vector2f Element<BackgroundType>::getPosition() const {return background.getPosition();}
+    template<class BackgroundType> sf::Vector2f Element<BackgroundType>::getSize() const {return background.getSize();}
 };
 
 #endif

@@ -12,7 +12,7 @@
 //using namespace std;
 
 namespace UI {
-    template<class DataType = Element> class ScrollWindow : public Hold {
+    template<class DataType = Element<>> class ScrollWindow : public Hold {
     private:
         Scroll scrollbar;
         sf::RectangleShape background;
@@ -70,10 +70,8 @@ namespace UI {
         const sf::Vector2f& pos,
         const sf::Vector2f& size,
         float scrollbarWidth
-    ) {
+    ) : data{initData} {
         if (!std::is_base_of<sf::Drawable, DataType>::value) throw "Invalid type specifier. Type must inherit from class sf::Drawable!";
-
-        data = initData;
 
         float fullElemHeight = this->getFullElemHeight();
         texture.create((unsigned int)size.x, (fullElemHeight > 0 ? (unsigned int)fullElemHeight : (unsigned int)size.y));

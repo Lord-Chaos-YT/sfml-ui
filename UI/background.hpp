@@ -11,7 +11,7 @@
 //using namespace std;
 
 namespace UI {
-    class Background : public sf::Drawable {
+    class Background : public sf::RectangleShape {
     private:
         sf::RectangleShape base;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -97,8 +97,7 @@ namespace UI {
         const sf::Color& hlColor,
         const sf::Color& sColor,
         float pad
-    ) {
-        padding = pad;
+    ) : padding{pad} {
         this->setColor(frontColor, hlColor, sColor);
         base.setPosition(pos);
         base.setSize(size);

@@ -103,8 +103,7 @@ namespace UI {
         const sf::Color& txtColor,
         const std::pair<sf::Color, sf::Color> popColors,
         float outlineThickness
-    ) {
-        padding = pad;
+    ) : padding{pad} {
         text.setFillColor(txtColor);
         text.setCharacterSize(characterSize);
         sprite.setTexture(texture.getTexture());
@@ -128,22 +127,8 @@ namespace UI {
         const sf::Color& txtColor,
         const std::pair<sf::Color, sf::Color> popColors,
         float outlineThickness
-    ) {
-        //padding = pad;
-        TextBox(characterSize, pos, pad, size, bgColor, txtColor, popColors, outlineThickness);
+    ) : TextBox(characterSize, pos, pad, size, bgColor, txtColor, popColors, outlineThickness) {
         text.setFont(font);
-        /*text.setFillColor(txtColor);
-        text.setCharacterSize(characterSize);
-        sprite.setTexture(texture.getTexture());
-        pop.setDrawOrder(2);
-        pop.setColors(popColors);
-        background.setPosition(pos);
-        if (size.y == -1.f) background.setSize({size.x, (float)characterSize + (padding.y * 2.f)});
-        else background.setSize(size);
-        background.setFillColor(bgColor);
-        background.setOutlineColor(sBlack);
-        background.setOutlineThickness(outlineThickness);
-        this->recomputeSizes();*/
     }
 
     void TextBox::recomputeText() {
