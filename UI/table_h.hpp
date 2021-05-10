@@ -25,7 +25,7 @@ namespace UI {
         void recomputePos();
         void recomputeSizes();
     public:
-        typedef ArrayType std::vector<std::vector<MultiElement<BackgroundType>>>;
+        typedef std::vector<std::vector<MultiElement<BackgroundType>>> ArrayType;
 
         Table(const std::vector<std::vector<MultiElement<BackgroundType>>>& initElems = {}, const sf::Vector2f& size = {0.f, 0.f}, const sf::Vector2f& innerPad = {4.f, 4.f}, const sf::Vector2f& outerPad = {4.f, 4.f});
 
