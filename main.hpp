@@ -20,6 +20,7 @@
 #include "UI/button.hpp"
 #include "UI/scroll.hpp"
 #include "UI/scene.hpp"
+#include "UI/table.hpp"
 #include "UI/pop.hpp"
 #include <functional>
 #include <windows.h>
