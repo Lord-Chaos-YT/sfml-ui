@@ -17,14 +17,14 @@ namespace UI {
         sf::Vector2f pos = background.getPosition() + outerPadding;
         for (std::size_t i = 0u; i < elements.size(); i++)
             for (std::size_t j = 0u; j < elements[i].size(); j++)
-                elements[i][j].setPosition(pos + {(calcedElementSize.x * (float)(i - 1u)) + (innerPadding.x * (float)(i - 1u)), (calcedElementSize.y * (float)(j - 1u)) + (innerPadding.y * (float)(j - 1u))});
+                elements[i][j].setPosition(pos + sf::Vector2f{(calcedElementSize.x * (float)(i - 1u)) + (innerPadding.x * (float)(i - 1u)), (calcedElementSize.y * (float)(j - 1u)) + (innerPadding.y * (float)(j - 1u))});
     }
 
     template<class BackgroundType> void Table<BackgroundType>::recomputeSizes() {
         calcedGridSize = {elements.size(), 0u};
         for (auto& column : elements) if (column.size() > calcedGridSize.y) calcedGridSize.y = column.size();
 
-        calcedElementSize = background.getSize() - {(innerPadding.x * (float)(calcedGridSize.x - 1u)) + (outerPadding.x * 2.f), (innerPadding.y * (float)(calcedGridSize.y - 1u)) + (outerPadding.y * 2.f)};
+        calcedElementSize = background.getSize() - sf::Vector2f{(innerPadding.x * (float)(calcedGridSize.x - 1u)) + (outerPadding.x * 2.f), (innerPadding.y * (float)(calcedGridSize.y - 1u)) + (outerPadding.y * 2.f)};
         calcedElementSize.x = calcedElementSize.x / calcedGridSize.x;
         calcedElementSize.y = calcedElementSize.y / calcedGridSize.y;
         for (std::vector<ElementType>& column : elements) for (ElementType& element : column) {

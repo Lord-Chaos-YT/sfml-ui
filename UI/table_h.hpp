@@ -5,7 +5,7 @@
 #include "elements.hpp"
 
 namespace UI {
-    template<class BackgroundType> class Table : public sf::Drawable {
+    template<class BackgroundType = sf::RectangleShape> class Table : public sf::Drawable {
     public:
         typedef Element<BackgroundType> ElementType;
         typedef std::vector<std::vector<ElementType>> ArrayType;
