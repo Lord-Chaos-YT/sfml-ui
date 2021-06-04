@@ -47,6 +47,10 @@ namespace UI {
 
         sf::Vector2f getPosition() const;
         sf::Vector2f getSize() const;
+        std::string getString() const;
+        sf::Color getFillColor() const;
+        sf::Color getTextColor() const;
+        std::size_t getCharacterSize() const;
 
         void drawText(sf::RenderTarget& target) {
             target.draw(text);
@@ -123,6 +127,10 @@ namespace UI {
 
     template<class BackgroundType> sf::Vector2f Element<BackgroundType>::getPosition() const {return background.getPosition();}
     template<class BackgroundType> sf::Vector2f Element<BackgroundType>::getSize() const {return background.getSize();}
+    template<class BackgroundType> std::string Element<BackgroundType>::getString() const {return text.getString();}
+    template<class BackgroundType> sf::Color Element<BackgroundType>::getFillColor() const {return background.getFillColor();}
+    template<class BackgroundType> sf::Color Element<BackgroundType>::getTextColor() const {return text.getFillColor();}
+    template<class BackgroundType> std::size_t Element<BackgroundType>::getCharacterSize() const {return text.getCharacterSize();}
 };
 
 #endif
