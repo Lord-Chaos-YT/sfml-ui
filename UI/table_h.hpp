@@ -10,8 +10,9 @@ namespace UI {
         typedef Element<BackgroundType> ElementType;
         typedef std::vector<std::vector<ElementType>> ArrayType;
     private:
+        BackgroundType backgroud;
         ArrayType elements;
-        sf::Vector2f innerPadding, outerPadding, calcedElementSize, background;
+        sf::Vector2f innerPadding, outerPadding, calcedElementSize;
         sf::Vector2u calcedGridSize;
         bool autoResize = false;
 
