@@ -1,6 +1,6 @@
 /**
  * Compile with:
- * g++ -o test0.exe test0.cpp -Isfml/include -Lsfml/lib "-Wl,--start-group" -lfreetype -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lsfml-main -lgdi32 -lopengl32 -lwinmm "-Wl,--end-group"
+ * g++ -o main.exe main.cpp -Isfml-ui/sfml/include -Lsfml-ui/sfml/lib "-Wl,--start-group" -lfreetype -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lsfml-main -lgdi32 -lopengl32 -lwinmm "-Wl,--end-group"
  */
 
 #define SFML_STATIC

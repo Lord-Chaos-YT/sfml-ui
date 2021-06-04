@@ -9,7 +9,7 @@ namespace UI {
     template<class BackgroundType> Table<BackgroundType>::Table(
         const ArrayType& initElems, const sf::Vector2f& size, const sf::Vector2f& innerPad, const sf::Vector2f& outerPad
     ) : elements{initElems}, innerPadding{innerPad}, outerPadding{outerPad} {
-        if (!std::is_base_of<sf::RectangleType, BackgroundType>::value) throw "Invalid type specifier. Type must inherit from class sf::RectangleShape!";
+        if (!std::is_base_of<sf::RectangleShape, BackgroundType>::value) throw "Invalid type specifier. Type must inherit from class sf::RectangleShape!";
         this->recomputeSizes();
     }
 
