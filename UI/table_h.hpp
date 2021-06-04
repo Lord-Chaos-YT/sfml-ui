@@ -11,7 +11,7 @@ namespace UI {
         typedef std::vector<std::vector<ElementType>> ArrayType;
     private:
         ArrayType elements;
-        sf::Vector2f innerPadding, outerPadding, calcedElementSize;
+        sf::Vector2f innerPadding, outerPadding, calcedElementSize, background;
         sf::Vector2u calcedGridSize;
         bool autoResize = false;
 
