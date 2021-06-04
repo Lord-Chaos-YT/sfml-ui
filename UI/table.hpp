@@ -29,6 +29,7 @@ namespace UI {
         calcedElementSize.y = calcedElementSize.y / calcedGridSize.y;
         for (std::vector<ElementType>& column : elements) for (ElementType& element : column) {
             element.setSize(calcedElementSize);
+            std::cout << "Setting size to " << calcedElementSize.x << " by " << calcedElementSize.y << "\n";
         }
         this->recomputePos();
     }
