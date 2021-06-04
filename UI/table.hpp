@@ -21,7 +21,7 @@ namespace UI {
     }
 
     template<class BackgroundType> void Table<BackgroundType>::recomputeSizes() {
-        calcedGridSize = {(std::size_t)elements.size(), 0u};
+        calcedGridSize = sf::Vector2u{elements.size(), 0u};
         for (auto& column : elements) if (column.size() > calcedGridSize.y) calcedGridSize.y = column.size();
 
         calcedElementSize = background.getSize() - sf::Vector2f{(innerPadding.x * (float)(calcedGridSize.x - 1u)) + (outerPadding.x * 2.f), (innerPadding.y * (float)(calcedGridSize.y - 1u)) + (outerPadding.y * 2.f)};
@@ -67,7 +67,7 @@ namespace UI {
         elements[place.x][place.y] = replaced;
     }
 
-    template<class BackgroundType> const std::vector<const std::vector<const ElementType>>& Table<BackgroundType>::getElements() const {return elements;}
+    template<class BackgroundType> const std::vector<std::vector<ElementType>>& Table<BackgroundType>::getElements() const {return elements;}
     template<class BackgroundType> sf::Vector2f Table<BackgroundType>::getPosition() const {return background.getPosition();}
     template<class BackgroundType> sf::Vector2f Table<BackgroundType>::getSize() const {return background.getSize();}
     
