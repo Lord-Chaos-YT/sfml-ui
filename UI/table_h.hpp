@@ -17,6 +17,7 @@ namespace UI {
         bool autoResize = false;
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+            for (const std::vector<ElementType> column : elements) for (const ElementType element : column) target.draw(element, states);
         }
 
         void recomputePos();
