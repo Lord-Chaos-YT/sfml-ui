@@ -108,7 +108,7 @@ namespace UI {
     }
 
     template<class BackgroundType> void Element<BackgroundType>::setSize(const sf::Vector2f& size) {
-        background.setSize(size);
+        sizeDefault = size;
         this->recomputeSizes();
     }
 

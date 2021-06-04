@@ -25,11 +25,10 @@ namespace UI {
         for (auto& column : elements) if (column.size() > calcedGridSize.y) calcedGridSize.y = column.size();
 
         calcedElementSize = background.getSize() - sf::Vector2f{(innerPadding.x * (float)(calcedGridSize.x - 1u)) + (outerPadding.x * 2.f), (innerPadding.y * (float)(calcedGridSize.y - 1u)) + (outerPadding.y * 2.f)};
-        //calcedElementSize.x = calcedElementSize.x / calcedGridSize.x;
-        //calcedElementSize.y = calcedElementSize.y / calcedGridSize.y;
+        calcedElementSize.x = calcedElementSize.x / calcedGridSize.x;
+        calcedElementSize.y = calcedElementSize.y / calcedGridSize.y;
         for (std::vector<ElementType>& column : elements) for (ElementType& element : column) {
             element.setSize(calcedElementSize);
-            std::cout << "Setting size to " << calcedElementSize.x << " by " << calcedElementSize.y << "\n";
         }
         this->recomputePos();
     }
