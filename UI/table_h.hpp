@@ -9,7 +9,7 @@ namespace UI {
     public:
         typedef std::vector<std::vector<ElementType>> ArrayType;
     private:
-        BackgroundType background;
+        sf::RectangleShape background;
         ArrayType elements;
         sf::Vector2f innerPadding, outerPadding, calcedElementSize;
         sf::Vector2u calcedGridSize;
