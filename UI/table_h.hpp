@@ -5,11 +5,11 @@
 #include "elements.hpp"
 
 namespace UI {
-    template<class ElementType = sf::RectangleShape> class Table : public sf::Drawable {
+    template<class ElementType = sf::RectangleShape, class BackgroundType = sf::RectangleShape> class Table : public sf::Drawable {
     public:
         typedef std::vector<std::vector<ElementType>> ArrayType;
     private:
-        sf::RectangleShape background;
+        BackgroundType background;
         ArrayType elements;
         sf::Vector2f innerPadding, outerPadding, calcedElementSize;
         sf::Vector2u calcedGridSize;
@@ -31,7 +31,7 @@ namespace UI {
         void erase(const sf::Vector2u& place);
         void replaceElement(const ElementType& replaced, sf::Vector2i place = {-1, -1});
 
-        const std::vector<std::vector<Element<BackgroundType>>>& getElements() const;
+        const std::vector<std::vector<ElementType>>& getElements() const;
         sf::Vector2f getPosition() const;
         sf::Vector2f getSize() const;
         sf::Vector2u getTableSize() const;
