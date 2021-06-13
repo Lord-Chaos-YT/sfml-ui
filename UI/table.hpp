@@ -68,7 +68,7 @@ namespace UI {
         elements[place.x][place.y] = replaced;
     }
 
-    template<class ElementType, class BackgroundType> const std::vector<std::vector<ElementType>>& Table<ElementType, BackgroundType>::getElements() const {return elements;}
+    template<class ElementType, class BackgroundType> const std::vector<std::vector<ElementType&>&>& Table<ElementType, BackgroundType>::getElements() const {return elements;}
     template<class ElementType, class BackgroundType> sf::Vector2f Table<ElementType, BackgroundType>::getPosition() const {return background.getPosition();}
     template<class ElementType, class BackgroundType> sf::Vector2f Table<ElementType, BackgroundType>::getSize() const {return background.getSize();}
     
