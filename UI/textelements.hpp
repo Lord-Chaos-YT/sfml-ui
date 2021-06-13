@@ -54,10 +54,6 @@ namespace UI {
         if (!std::is_base_of<sf::RectangleShape, BackgroundType>::value) throw "Invalid type specifier. Type must inherit from class sf::RectangleShape!";
         text.setFillColor(textColor);
 
-        background.setPosition(pos);
-        background.setSize(sizeDefault);
-        background.setFillColor(bgColor);
-
         this->recomputeSizes();
     }
 
@@ -65,7 +61,7 @@ namespace UI {
         sf::Vector2f pos = this->Element<BackgroundType>::getPosition();
         text.setPosition(centerStrInBounds(
             {text.getLocalBounds().width, (float)text.getCharacterSize()},
-            background.getSize(), pos
+            Element<BackgroundType>::background.getSize(), pos
         ));
     }
 
@@ -82,7 +78,7 @@ namespace UI {
         else sizes.x = sizeDefault.x;
         if (sizeDefault.y == -1.f) sizes.y = textSize.y + 8.f;
         else sizes.y = sizeDefault.y;
-        background.setSize(sizes);
+        Element<BackgroundType>::background.setSize(sizes);
         this->recomputePosFallthrough();
     }
 
