@@ -74,10 +74,10 @@ namespace UI {
         this->Element<BackgroundType>::recomputeSizes();
         sf::Vector2f textSize = {text.getLocalBounds().width, (float)text.getCharacterSize()},
             sizes = {0.f, 0.f};
-        if (sizeDefault.x == -1.f) sizes.x = textSize.x + 16.f;
-        else sizes.x = sizeDefault.x;
-        if (sizeDefault.y == -1.f) sizes.y = textSize.y + 8.f;
-        else sizes.y = sizeDefault.y;
+        if (Element<BackgroundType>::sizeDefault.x == -1.f) sizes.x = textSize.x + 16.f;
+        else sizes.x = Element<BackgroundType>::sizeDefault.x;
+        if (Element<BackgroundType>::sizeDefault.y == -1.f) sizes.y = textSize.y + 8.f;
+        else sizes.y = Element<BackgroundType>::sizeDefault.y;
         Element<BackgroundType>::background.setSize(sizes);
         this->recomputePosFallthrough();
     }
