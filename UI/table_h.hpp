@@ -8,7 +8,7 @@ namespace UI {
     template<class ElementType = sf::RectangleShape, class BackgroundType = sf::RectangleShape> class Table : public sf::Drawable {
     public:
         typedef std::vector<std::vector<ElementType>> ArrayType;
-    private:
+    protected:
         BackgroundType background;
         ArrayType elements;
         sf::Vector2f innerPadding, outerPadding, calcedElementSize;
