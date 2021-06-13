@@ -4,15 +4,15 @@
 #define UI_SCROLLWINDOW_HPP
 
 #include <SFML/Graphics.hpp>
+#include "textelements.hpp"
 #include "concrete.hpp"
-#include "elements.hpp"
 #include "scroll.hpp"
 #include <vector>
 
 //using namespace std;
 
 namespace UI {
-    template<class DataType = Element<>> class ScrollWindow : public Hold {
+    template<class DataType = TextElement<>> class ScrollWindow : public Hold {
     private:
         Scroll scrollbar;
         sf::RectangleShape background;
