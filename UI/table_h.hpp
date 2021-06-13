@@ -31,7 +31,7 @@ namespace UI {
         void erase(const sf::Vector2u& place);
         void replaceElement(const ElementType& replaced, sf::Vector2i place = {-1, -1});
 
-        const std::vector<std::vector<ElementType&>&>& getElements() const;
+        std::vector<std::vector<ElementType&>&>& getElements();
         sf::Vector2f getPosition() const;
         sf::Vector2f getSize() const;
         sf::Vector2u getTableSize() const;
