@@ -15,10 +15,9 @@ namespace UI {
 
     template<class ElementType, class BackgroundType> void Table<ElementType, BackgroundType>::recomputePos() {
         sf::Vector2f pos = background.getPosition() + outerPadding;
-        for (std::size_t i = 0u; i < elements.size(); i++) for (std::size_t j = 0u; j < elements[i].size(); j++) {
-            elements[i][j].setPosition(pos + sf::Vector2f{(calcedElementSize.x * (float)i) + (innerPadding.x * (float)i), (calcedElementSize.y * (float)j) + (innerPadding.y * (float)j)});
-            std::cout << "At: (" << i << " " << j << "): " << &elements.at(i).at(j) << "\n";
-        }
+        for (std::size_t i = 0u; i < elements.size(); i++)
+            for (std::size_t j = 0u; j < elements[i].size(); j++)
+                elements[i][j].setPosition(pos + sf::Vector2f{(calcedElementSize.x * (float)i) + (innerPadding.x * (float)i), (calcedElementSize.y * (float)j) + (innerPadding.y * (float)j)});
     }
 
     template<class ElementType, class BackgroundType> void Table<ElementType, BackgroundType>::recomputeSizes() {
