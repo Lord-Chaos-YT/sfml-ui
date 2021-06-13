@@ -4,12 +4,13 @@
 #define UI_TEXTELEMENTS_HPP
 
 #include <SFML/Graphics.hpp>
+#include "background.hpp"
 #include "elements.hpp"
 
 //using namespace std;
 
 namespace UI {
-    template<class BackgroundType = UI::PopBackground> class TextElement : public Element<BackgroundType> {
+    template<class BackgroundType = PopBackground> class TextElement : public Element<BackgroundType> {
     protected:
         sf::Text text;
 
@@ -18,7 +19,7 @@ namespace UI {
         void recomputeSizes();
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-            target.draw(background, states);
+            target.draw(Element<BackgroundType>::background, states);
             target.draw(text, states);
         }
     public:
