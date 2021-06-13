@@ -17,7 +17,7 @@ namespace UI {
         sf::Vector2f pos = background.getPosition() + outerPadding;
         for (std::size_t i = 0u; i < elements.size(); i++) for (std::size_t j = 0u; j < elements[i].size(); j++) {
             elements[i][j].setPosition(pos + sf::Vector2f{(calcedElementSize.x * (float)i) + (innerPadding.x * (float)i), (calcedElementSize.y * (float)j) + (innerPadding.y * (float)j)});
-            std::cout << &elements.at(i).at(j) << "\n";
+            std::cout << "At: (" << i << " " << j << "): " << &elements.at(i).at(j) << "\n";
         }
     }
 
