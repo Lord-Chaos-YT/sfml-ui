@@ -23,7 +23,11 @@
 #include "UI/table.hpp"
 #include "UI/pop.hpp"
 #include <functional>
-#include <windows.h>
+
+#if defined(_WIN32)
+    #include <windows.h>
+#endif
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -36,8 +40,10 @@ int init(int argCount, char* args[],
 function<function<void(sf::Time& time)>(sf::RenderWindow& window, sf::Font& font, sf::Cursor& normalCursor, sf::Cursor& textBoxCursor, sf::Clock& clock, UI::Focus*& focus, UI::Hold*& hold, UI::Hover*& hover, UI::Scene*& currentScene)> initFnc,
 string dir = "", string windowTitle = "Test") {
     // Only show console if the argument "console" is used?
+#if defined(_WIN32)
     if (argCount > 1 && (string)args[1] == "console");
     else ShowWindow(FindWindowA("ConsoleWindowClass", NULL), false);
+#endif
 
     // Main window & font declarations
     sf::RenderWindow window(sf::VideoMode(UI::winW, UI::winH), windowTitle, sf::Style::Default);
@@ -139,7 +145,11 @@ string dir = "", string windowTitle = "Test") {
         if (currentScene != nullptr) window.draw(*currentScene);
         window.display();
     }
+
+#if defined(_WIN32)
     FreeConsole();
+#endif
+
     return 0;
 }
 
